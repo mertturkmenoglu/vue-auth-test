@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center align-middle mt-5">
-    <h1 class="mt-5">{{ user.name }}</h1>
+    <h1 v-if="user !== null" class="mt-5">{{ user.name }}</h1>
     <button @click="logoutHandler" class="btn btn-outline-primary mt-5">
       Logout
     </button>
