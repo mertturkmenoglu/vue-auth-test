@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="card text-center pt-5 mt-5 border-0">
+    <div class="card text-center pt-5 mb-5 border-0">
       <img
         src="../assets/icon_primary.svg"
         class="rounded mx-auto pt-3"
@@ -11,7 +11,7 @@
         <h1 class="app-name">Vevericka</h1>
       </div>
 
-      <div class="container-fluid w-75">
+      <div class="container-fluid">
         <div class="card app-border">
           <div class="container my-5 w-75">
             <form class="text-left" @submit.prevent="loginHandler">
