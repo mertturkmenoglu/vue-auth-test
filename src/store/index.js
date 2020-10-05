@@ -24,8 +24,8 @@ const actions = {
       const response = await fetch(`https://cors-anywhere.herokuapp.com/https://vevericka-auth-service.herokuapp.com/auth/login`, requestOptions);
       const data = await response.json();
 
-      localStorage.setItem('user', JSON.stringify(data.token))
-      await commit('loginSuccess', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user))
+      await commit('loginSuccess', data.user);
       router.push('/')
     } catch (err) {
       commit('loginFailure', err);
