@@ -13,12 +13,7 @@
 
       <div class="container-fluid">
         <div class="card app-border">
-          <div v-show="loginLoading" class="pt-3">
-            <div class="spinner-border text-warning mt-3" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div>
-          <div class="container my-5 w-75">
+          <div class="container mb-5 w-75">
             <form class="text-left" @submit.prevent="loginHandler">
               <div class="form-group mt-5">
                 <label>Email address</label>
@@ -37,6 +32,16 @@
                   class="form-control app-border"
                   placeholder="Password"
                 />
+              </div>
+              <div v-show="loginLoading" class="pt-3 text-center">
+                <div class="spinner-border text-warning mt-3" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div v-show="loginError" class="pt-3 container w-75">
+                <div class="alert alert-danger" role="alert">
+                  <span>Can't login</span>
+                </div>
               </div>
               <div class="text-center">
                 <button
@@ -76,6 +81,14 @@ export default {
   computed: {
     loginLoading() {
       const value = this.$store.state.status.loggingIn;
+      if (value) {
+        return value;
+      } else {
+        return false;
+      }
+    },
+    loginError() {
+      const value = this.$store.state.error;
       if (value) {
         return value;
       } else {
