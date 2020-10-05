@@ -37,6 +37,33 @@ const actions = {
     }
   },
 
+  async register({ commit }, { email, username, name, password }) {
+    commit('registerRequest', { email, username, name, password })
+
+    console.log('before try')
+    try {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, username, name, password })
+      };
+
+      const response = await fetch(`https://cors-anywhere.herokuapp.com/https://vevericka-auth-service.herokuapp.com/auth/register`, requestOptions);
+      const data = await response.json();
+
+      if (!data || data.message) {
+        commit('registerFailure', data.message)
+        return;
+      }
+
+      localStorage.setItem('user', JSON.stringify(data))
+      await commit('registerSuccess', data)
+      router.push('/')
+    } catch (err) {
+      commit('registerFailure', err.message);
+    }
+  },
+
   logout({ commit }) {
     localStorage.removeItem('user');
     commit('logout');
@@ -64,17 +91,20 @@ const mutations = {
     state.status = {};
     state.user = null;
   },
-  // eslint-disable-next-line no-unused-vars
   registerRequest(state, user) {
     state.status = { registering: true };
+    state.user = user;
+    state.error = null;
   },
-  // eslint-disable-next-line no-unused-vars
   registerSuccess(state, user) {
-    state.status = {};
+    state.status = { registeredIn: true, registering: false, loggedIn: true };
+    state.user = user;
+    state.error = null;
   },
-  // eslint-disable-next-line no-unused-vars
   registerFailure(state, error) {
     state.status = {};
+    state.user = null;
+    state.error = error;
   }
 }
 
