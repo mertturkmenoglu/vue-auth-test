@@ -13,6 +13,11 @@
 
       <div class="container-fluid">
         <div class="card app-border">
+          <div v-show="loginLoading" class="pt-3">
+            <div class="spinner-border text-warning mt-3" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
           <div class="container my-5 w-75">
             <form class="text-left" @submit.prevent="loginHandler">
               <div class="form-group mt-5">
@@ -47,12 +52,6 @@
               <router-link to="/register" class="ml-1">Register</router-link>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div v-if="loginLoading" class="mt-5">
-        <div class="spinner-border text-warning mt-3" role="status">
-          <span class="sr-only">Loading...</span>
         </div>
       </div>
     </div>
