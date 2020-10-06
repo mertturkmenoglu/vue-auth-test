@@ -40,7 +40,6 @@ const actions = {
   async register({ commit }, { email, username, name, password }) {
     commit('registerRequest', { email, username, name, password })
 
-    console.log('before try')
     try {
       const requestOptions = {
         method: 'POST',

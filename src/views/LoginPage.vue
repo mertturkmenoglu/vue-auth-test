@@ -11,7 +11,7 @@
         <h1 class="app-name">Vevericka</h1>
       </div>
 
-      <div class="container-fluid">
+      <div class="container-fluid max-container">
         <div class="card app-border">
           <div class="container mb-5 w-75">
             <form class="text-left" @submit.prevent="loginHandler">
@@ -100,6 +100,12 @@ export default {
 </script>
 
 <style scoped>
+@media (min-width: 600px) {
+  .max-container {
+    width: 500px;
+  }
+}
+
 .app-name {
   color: #dd2c00;
 }
